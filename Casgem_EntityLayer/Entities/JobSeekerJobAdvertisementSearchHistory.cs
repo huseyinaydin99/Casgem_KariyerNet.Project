@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Casgem_EntityLayer.Entities
 {
-    //İş ilanı Entity'si.
-    public class JobAdvertisement
+    //İş ilanı arama kısmı geçmişi Entity'si.
+    public class EmployerJobAdvertisementSearchHistory
     {
 
     }
