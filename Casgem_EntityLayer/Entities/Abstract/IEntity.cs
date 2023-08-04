@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Casgem_EntityLayer.Entities
+namespace Casgem_EntityLayer.Entities.Abstract
 {
-    public class JobSeeker
+    public interface IEntity
     {
 
     }
