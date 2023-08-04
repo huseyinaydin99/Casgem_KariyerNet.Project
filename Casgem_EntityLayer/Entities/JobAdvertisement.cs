@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Casgem_EntityLayer.Entities
 {
-    //İş ilanı Entity'si
+    //İş ilanı Entity'si.
     public class JobAdvertisement
     {
 
