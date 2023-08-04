@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Casgem_EntityLayer.Entities.Concrete
 {
-    public class AppRole : IdentityRole<int>, IEntity
+    public class AppRole : IdentityRole<int>
     {
 
     }

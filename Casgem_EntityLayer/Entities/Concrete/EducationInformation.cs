@@ -15,5 +15,7 @@ namespace Casgem_EntityLayer.Entities.Concrete
         public string Section { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public int JobSeekerId { get; set; }
+        public JobSeeker JobSeeker { get; set; }
     }
 }

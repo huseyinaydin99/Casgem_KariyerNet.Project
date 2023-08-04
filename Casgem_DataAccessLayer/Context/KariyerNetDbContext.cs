@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +16,7 @@ namespace Casgem_DataAccessLayer.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server = DESKTOP-13123BI; Initial Catalog = CasgemKariyerNetDb; Integrated Security = true;");
-        }
+        }        
 
         public DbSet<Company> Companies { get; set; } //Şirketler tablosu.
         public DbSet<CurriculumVitae> CurriculumVitaes { get; set; } //CV tablosu.
@@ -26,11 +28,13 @@ namespace Casgem_DataAccessLayer.Context
         public DbSet<EmployerJobAdvertisementSearchHistory> EmployerJobAdvertisementSearchHistories { get; set; }
         public DbSet<JobAdvertisement> JobAdvertisements { get; set; }//iş ilanları tablosu.
         public DbSet<JobApplication> JobApplications { get; set; } //iş başvuruları tablosu.
-        public DbSet<JobSeeker> JobSeeker { get; set; } //iş arayanlar tablosu.
+        public DbSet<JobSeeker> JobSeekers { get; set; } //iş arayanlar tablosu.
         //arama geçmişi.
         //iş arayanını yapmış olduğu aramalarının gelmişlerinin geçmişlerinin tutulduğu tablodur.
         public DbSet<JobSeekerJobAdvertisementSearchHistory> JobSeekerJobAdvertisementSearchHistories { get; set; }
         //iş ilanında yayınlanan iş verenler tarafından istenilen ve beklenen iş deneyimleri tablosudur.
         public DbSet<WorkExperience> WorkExperiences { get; set; }
     }
+
+
 }
