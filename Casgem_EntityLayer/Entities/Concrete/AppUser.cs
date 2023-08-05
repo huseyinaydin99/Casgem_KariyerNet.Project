@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Casgem_EntityLayer.Entities.Concrete
 {
-    public class AppUser : IdentityUser<int>
+    public class AppUser : IdentityUser<int>, IEntity
     {
         public string NameSurname { get; set; }
         //public int EmployerId { get; set; }

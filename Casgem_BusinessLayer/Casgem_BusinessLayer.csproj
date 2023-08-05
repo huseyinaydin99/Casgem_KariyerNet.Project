@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Casgem_APILayer\Casgem_APILayer.csproj" />
+    <ProjectReference Include="..\Casgem_EntityLayer\Casgem_EntityLayer.csproj" />
+  </ItemGroup>
+
 </Project>

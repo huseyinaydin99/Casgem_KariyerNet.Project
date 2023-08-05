@@ -9,14 +9,14 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Casgem_DataAccessLayer.Context
+namespace Casgem_DataAccessLayer.Concrete.Context
 {
     public class KariyerNetDbContext : IdentityDbContext<AppUser, AppRole, int>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server = DESKTOP-13123BI; Initial Catalog = CasgemKariyerNetDb; Integrated Security = true;");
-        }        
+        }
 
         public DbSet<Company> Companies { get; set; } //Şirketler tablosu.
         public DbSet<CurriculumVitae> CurriculumVitaes { get; set; } //CV tablosu.
