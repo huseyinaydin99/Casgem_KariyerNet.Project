@@ -1,0 +1,3 @@
+﻿DTO'lar sadece Create, Update, Select için olmalıdır.
+API'de gelen parametreler DTO şeklinde olmalıdır.
+Delete için sadece parametre olarak int id gelmelidir.
