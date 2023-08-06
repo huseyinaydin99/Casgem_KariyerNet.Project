@@ -5,5 +5,6 @@ namespace Casgem_DTOLayer.DTOs.Concrete.AppUserDTOs
     public class CreateAppUserDTO : IDTO
     {
         public int Id { get; set; }
+        public string Password { get; set; }
     }
 }

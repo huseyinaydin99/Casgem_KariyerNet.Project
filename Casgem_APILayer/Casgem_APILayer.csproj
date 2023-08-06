@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.20">
       <PrivateAssets>all</PrivateAssets>
@@ -22,7 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Casgem_CoreLayer\Casgem_CoreLayer.csproj" />
     <ProjectReference Include="..\Casgem_DataAccessLayer\Casgem_DataAccessLayer.csproj" />
+    <ProjectReference Include="..\Casgem_DTOLayer\Casgem_DTOLayer.csproj" />
   </ItemGroup>
 
 </Project>
