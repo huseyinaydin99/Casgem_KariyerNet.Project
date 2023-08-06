@@ -23,9 +23,8 @@ namespace Casgem_EntityLayer.Entities.Concrete
         //public int EmployerJobAdvertisementSearchHistoryId { get; set; }//iş veren geçmişi 1'e çok ilişkili.
         public List<EmployerJobAdvertisementSearchHistory> EmployerJobAdvertisementSearchHistory { get; set; }
         //public int JobAdvertisementId { get; set; } //iş veren iş ilanlarına 1'e çok ilişkili.
-        public List<JobAdvertisement> JobAdvertisement { get; set; } //iş verenin yayınladığı birden fazla iş ilanı var.
-        //public int JobApplicationId { get; set; }//iş başvurusu id'si.
-        public List<JobApplication> JobApplications { get; set; }
+        public List<JobAdvertisement> JobAdvertisements { get; set; } //iş verenin yayınladığı birden fazla iş ilanı var.
+        
         //public int DegreeId { get; set; } //bir iş verenin birden fazla ünvanı olabilir.
         public List<Degree> Degrees { get; set; }
     }

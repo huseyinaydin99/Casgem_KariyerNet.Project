@@ -10,6 +10,8 @@ namespace Casgem_DataAccessLayer.Abstract
 {
     public interface IJobAdvertisementDal : IGenericDal<JobAdvertisement>
     {
-        
+        public JobAdvertisement GetJobAdvertisementWithWorkExperince(int id);
+        public JobAdvertisement GetJobAdvertisementWithJobApplication(int id);
+        public List<JobAdvertisement> GetJobAdvertisementWithJobApplications();
     }
 }

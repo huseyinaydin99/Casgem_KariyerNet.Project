@@ -10,6 +10,10 @@ namespace Casgem_DataAccessLayer.Abstract
 {
     public interface IJobSeekerDal : IGenericDal<JobSeeker>
     {
-        
+        public List<JobSeeker> GetJobSeekerWithJobApplication();
+        public JobSeeker GetJobSeekerWithJobApplication(int id);
+        public List<JobSeeker> GetJobSeekerWithDegree();
+        public JobSeeker GetJobSeekerWithDegree(int id);
+        public JobSeeker GetJobSeekerWithEducationInformation(int id);
     }
 }

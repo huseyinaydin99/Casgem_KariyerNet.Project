@@ -10,6 +10,7 @@ namespace Casgem_DataAccessLayer.Abstract
 {
     public interface ICompanyDal : IGenericDal<Company>
     {
-        
+        public Company GetCompanyWithDegree(int id);
+        public List<Company> GetCompanyWithDegrees();
     }
 }

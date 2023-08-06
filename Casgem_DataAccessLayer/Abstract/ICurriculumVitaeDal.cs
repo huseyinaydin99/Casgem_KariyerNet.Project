@@ -10,6 +10,7 @@ namespace Casgem_DataAccessLayer.Abstract
 {
     public interface ICurriculumVitaeDal : IGenericDal<CurriculumVitae>
     {
-        
+        public CurriculumVitae GetCurriculumVitaeWithWorkExperience(int id);
+        public CurriculumVitae GetCurriculumVitaeWithEducationInformation(int id);
     }
 }

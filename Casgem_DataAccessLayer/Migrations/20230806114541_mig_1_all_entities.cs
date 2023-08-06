@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Casgem_DataAccessLayer.Migrations
 {
-    public partial class mig_1_add_all_entity : Migration
+    public partial class mig_1_all_entities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -195,6 +195,7 @@ namespace Casgem_DataAccessLayer.Migrations
                     NumberOfEmployees = table.Column<int>(type: "int", nullable: false),
                     Website = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LinkedinUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DegreeId = table.Column<int>(type: "int", nullable: false),
                     EmployerId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -427,7 +428,7 @@ namespace Casgem_DataAccessLayer.Migrations
                         column: x => x.JobSeekerId,
                         principalTable: "JobSeekers",
                         principalColumn: "JobSeekerId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -573,7 +574,8 @@ namespace Casgem_DataAccessLayer.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_WorkExperiences_JobAdvertisementId",
                 table: "WorkExperiences",
-                column: "JobAdvertisementId");
+                column: "JobAdvertisementId",
+                unique: true);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_CurriculumVitaes_EducationInformations_EducationInformationId",
@@ -581,7 +583,7 @@ namespace Casgem_DataAccessLayer.Migrations
                 column: "EducationInformationId",
                 principalTable: "EducationInformations",
                 principalColumn: "EducationInformationId",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.NoAction);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
