@@ -9,6 +9,7 @@ namespace Casgem_BusinessLayer.Abstract
 {
     public interface ICurriculumVitaeService : IGenericService<CurriculumVitae>
     {
-
+        public CurriculumVitae GetCurriculumVitaeWithWorkExperience(int id);
+        public CurriculumVitae GetCurriculumVitaeWithEducationInformation(int id);
     }
 }

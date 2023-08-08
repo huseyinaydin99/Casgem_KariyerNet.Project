@@ -13,6 +13,31 @@ namespace Casgem_BusinessLayer.Concrete
             _jobSeekerDal = jobSeekerDal;
         }
 
+        public List<JobSeeker> GetJobSeekerWithDegree()
+        {
+            return _jobSeekerDal.GetJobSeekerWithDegree();
+        }
+
+        public JobSeeker GetJobSeekerWithDegree(int id)
+        {
+            return _jobSeekerDal.GetJobSeekerWithDegree(id);
+        }
+
+        public JobSeeker GetJobSeekerWithEducationInformation(int id)
+        {
+            return _jobSeekerDal.GetJobSeekerWithEducationInformation(id);
+        }
+
+        public List<JobSeeker> GetJobSeekerWithJobApplication()
+        {
+            return _jobSeekerDal.GetJobSeekerWithJobApplication();
+        }
+
+        public JobSeeker GetJobSeekerWithJobApplication(int id)
+        {
+            return _jobSeekerDal.GetJobSeekerWithJobApplication(id);
+        }
+
         public void TDelete(JobSeeker t)
         {
             _jobSeekerDal.Delete(t);

@@ -14,6 +14,21 @@ namespace Casgem_BusinessLayer.Concrete
             _jobAdvertisementDal = jobAdvertisementDal;
         }
 
+        public JobAdvertisement GetJobAdvertisementWithJobApplication(int id)
+        {
+            return _jobAdvertisementDal.GetJobAdvertisementWithJobApplication(id);
+        }
+
+        public List<JobAdvertisement> GetJobAdvertisementWithJobApplications()
+        {
+            return _jobAdvertisementDal.GetJobAdvertisementWithJobApplications();
+        }
+
+        public JobAdvertisement GetJobAdvertisementWithWorkExperince(int id)
+        {
+            return _jobAdvertisementDal.GetJobAdvertisementWithWorkExperince(id);
+        }
+
         public void TDelete(JobAdvertisement t)
         {
             _jobAdvertisementDal.Delete(t);

@@ -14,6 +14,46 @@ namespace Casgem_BusinessLayer.Concrete
             _employerDal = employerDal;
         }
 
+        public List<Employer> GetEmployerWithCompanies()
+        {
+            return _employerDal.GetEmployerWithCompanies();
+        }
+
+        public Employer GetEmployerWithCompany(int id)
+        {
+            return _employerDal.GetEmployerWithCompany(id);
+        }
+
+        public Employer GetEmployerWithDegree(int id)
+        {
+            return _employerDal.GetEmployerWithDegree(id);
+        }
+
+        public List<Employer> GetEmployerWithDegrees()
+        {
+            return _employerDal.GetEmployerWithDegrees();
+        }
+
+        public Employer GetEmployerWithJobAdvertisement(int id)
+        {
+            return _employerDal.GetEmployerWithJobAdvertisement(id);
+        }
+
+        public List<Employer> GetEmployerWithJobAdvertisements()
+        {
+            return _employerDal.GetEmployerWithJobAdvertisements();
+        }
+
+        public List<Employer> GetEmployerWithJobAdvertisementSearchHistories()
+        {
+            return _employerDal.GetEmployerWithJobAdvertisementSearchHistories();
+        }
+
+        public Employer GetEmployerWithJobAdvertisementSearchHistory(int id)
+        {
+            return _employerDal.GetEmployerWithJobAdvertisementSearchHistory(id);
+        }
+
         public void TDelete(Employer t)
         {
             _employerDal.Delete(t);

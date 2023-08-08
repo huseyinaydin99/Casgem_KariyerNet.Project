@@ -20,6 +20,41 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
             _context = context;
         }
 
+        public void AddJobSeekerForDegree(int jobSeekerId, Degree degree)
+        {
+            var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
+            value.Degrees.Add(degree);
+            _context.SaveChanges();
+        }
+
+        public void AddJobSeekerForDegree(int jobSeekerId, List<Degree> degrees)
+        {
+            var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
+            degrees.ForEach(degree => value.Degrees.Add(degree));
+            _context.SaveChanges();
+        }
+
+        public void AddJobSeekerForEducationInformation(int jobSeekerId, EducationInformation educationInformation)
+        {
+            var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
+            value.EducationInformation = educationInformation;
+            _context.SaveChanges();
+        }
+
+        public void AddJobSeekerForJobApplication(int jobSeekerId, JobApplication jobApplication)
+        {
+            var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
+            value.JobApplications.Add(jobApplication);
+            _context.SaveChanges();
+        }
+
+        public void AddJobSeekerForJobApplication(int jobSeekerId, List<JobApplication> jobApplications)
+        {
+            var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
+            jobApplications.ForEach(jobApplication => value.JobApplications.Add(jobApplication));
+            _context.SaveChanges();
+        }
+
         public List<JobSeeker> GetJobSeekerWithDegree()
         {
             return _context.JobSeekers.Include(jobSeeker => jobSeeker.Degrees).ToList();
