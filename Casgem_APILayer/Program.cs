@@ -2,6 +2,7 @@ using Casgem_DataAccessLayer.Abstract;
 using Casgem_DataAccessLayer.Concrete.Context;
 using Casgem_DataAccessLayer.Concrete.EntityFramework;
 using Casgem_EntityLayer.Entities.Concrete;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<KariyerNetDbContext>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<KariyerNetDbContext>();
-
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddAuthentication();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

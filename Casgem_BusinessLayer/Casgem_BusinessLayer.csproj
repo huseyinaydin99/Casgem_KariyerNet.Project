@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Casgem_APILayer\Casgem_APILayer.csproj" />
+    <ProjectReference Include="..\Casgem_DataAccessLayer\Casgem_DataAccessLayer.csproj" />
     <ProjectReference Include="..\Casgem_EntityLayer\Casgem_EntityLayer.csproj" />
   </ItemGroup>
 

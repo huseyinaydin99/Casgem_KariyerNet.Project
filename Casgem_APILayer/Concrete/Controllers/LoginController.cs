@@ -19,7 +19,8 @@ namespace Casgem_APILayer.Concrete.Controllers
             _signInManager = signInManager;
         }
 
-        public async Task<IActionResult> Login(SelectAppUserDTO selectAppUserDTO)
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginAppUserDTO selectAppUserDTO)
         {
             string username = selectAppUserDTO.Username;
             string password = selectAppUserDTO.Password;

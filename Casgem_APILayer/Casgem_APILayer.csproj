@@ -24,9 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Casgem_BusinessLayer\Casgem_BusinessLayer.csproj" />
     <ProjectReference Include="..\Casgem_CoreLayer\Casgem_CoreLayer.csproj" />
-    <ProjectReference Include="..\Casgem_DataAccessLayer\Casgem_DataAccessLayer.csproj" />
     <ProjectReference Include="..\Casgem_DTOLayer\Casgem_DTOLayer.csproj" />
+    <ProjectReference Include="..\Casgem_EntityLayer\Casgem_EntityLayer.csproj" />
   </ItemGroup>
 
 </Project>

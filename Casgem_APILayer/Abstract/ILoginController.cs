@@ -5,6 +5,6 @@ namespace Casgem_APILayer.Abstract
 {
     public interface ILoginController
     {
-        public Task<IActionResult> Login(SelectAppUserDTO selectAppUserDTO);
+        public Task<IActionResult> Login(LoginAppUserDTO loginAppUserDTO);
     }
 }
