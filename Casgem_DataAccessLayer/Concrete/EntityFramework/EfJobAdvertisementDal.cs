@@ -20,6 +20,26 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
             _context = context;
         }
 
+        public void AddJobAdvertisementForJobApplication(int jobAdvertisementId, JobApplication jobApplication)
+        {
+            var value = _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == jobAdvertisementId).FirstOrDefault();
+            value.JobApplication.Add(jobApplication);
+            _context.SaveChanges();
+        }
+
+        public void AddJobAdvertisementForJobApplications(int jobAdvertisementId, List<JobApplication> jobApplication)
+        {
+            var value = _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == jobAdvertisementId).FirstOrDefault();
+            jobApplication.ForEach(jobApp => value.JobApplication.Add(jobApp));
+        }
+
+        public void AddJobAdvertisementForWorkExperince(int jobAdvertisementId, WorkExperience workExperince)
+        {
+            var value = _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == jobAdvertisementId).FirstOrDefault();
+            value.WorkExperience = workExperince;
+            _context.SaveChanges();
+        }
+
         public JobAdvertisement GetJobAdvertisementWithJobApplication(int id)
         {
             return _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == id).FirstOrDefault();

@@ -20,6 +20,20 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
             _context = context;
         }
 
+        public void AddCurriculumVitaeForEducationInformation(int curriculumVitaeId, EducationInformation educationInformation)
+        {
+            var value = _context.CurriculumVitaes.Include(curriculumVitae => curriculumVitae.EducationInformation).Where(curriculumVitae => curriculumVitae.CurriculumVitaeId == curriculumVitaeId).FirstOrDefault();
+            value.EducationInformation = educationInformation;
+            _context.SaveChanges();
+        }
+
+        public void AddCurriculumVitaeForWorkExperience(int curriculumVitaeId, WorkExperience workExperience)
+        {
+            var value = _context.CurriculumVitaes.Include(curriculumVitae => curriculumVitae.EducationInformation).Where(curriculumVitae => curriculumVitae.CurriculumVitaeId == curriculumVitaeId).FirstOrDefault();
+            value.WorkExperience = workExperience;
+            _context.SaveChanges();
+        }
+
         public CurriculumVitae GetCurriculumVitaeWithEducationInformation(int id)
         {
             return _context.CurriculumVitaes.Include(curriculumVitae => curriculumVitae.EducationInformation).Where(curriculumVitae => curriculumVitae.CurriculumVitaeId == id).FirstOrDefault();

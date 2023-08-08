@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Casgem_DataAccessLayer.Migrations
 {
     [DbContext(typeof(KariyerNetDbContext))]
-    [Migration("20230806114541_mig_1_all_entities")]
+    [Migration("20230808151949_mig_1_all_entities")]
     partial class mig_1_all_entities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

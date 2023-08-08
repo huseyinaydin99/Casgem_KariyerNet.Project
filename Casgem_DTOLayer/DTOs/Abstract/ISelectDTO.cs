@@ -8,6 +8,6 @@ namespace Casgem_DTOLayer.DTOs.Abstract
 {
     public interface ISelectDTO
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
     }
 }

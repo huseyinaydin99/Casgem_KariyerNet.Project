@@ -428,7 +428,7 @@ namespace Casgem_DataAccessLayer.Migrations
                         column: x => x.JobSeekerId,
                         principalTable: "JobSeekers",
                         principalColumn: "JobSeekerId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -583,7 +583,7 @@ namespace Casgem_DataAccessLayer.Migrations
                 column: "EducationInformationId",
                 principalTable: "EducationInformations",
                 principalColumn: "EducationInformationId",
-                onDelete: ReferentialAction.NoAction);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
