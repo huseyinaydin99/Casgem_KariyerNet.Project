@@ -30,9 +30,13 @@ namespace Casgem_APILayer.Concrete.Controllers
         [HttpPost("/AddJobSeeker")]
         public async Task<IActionResult> AddJobSeeker(CreateJobSeekerDTO createJobSeekerDTO)
         {
-            var value = _mapper.Map<JobSeeker>(createJobSeekerDTO);
-            _jobSeekerService.TInsert(value);
-            return Ok(value);
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                var value = _mapper.Map<JobSeeker>(createJobSeekerDTO);
+                _jobSeekerService.TInsert(value);
+                return Ok(value);
+            }
+            return BadRequest("Login olmadığınız için kayıt işlemi yapılamadı.");
         }
 
         [HttpPost("/AddJobSeekerForDegree")]
@@ -47,7 +51,7 @@ namespace Casgem_APILayer.Concrete.Controllers
         public async Task<IActionResult> AddJobSeekerForDegrees(int jobSeekerId, List<CreateDegreeDTO> createDegreeDTOs)
         {
             var value = _mapper.Map<List<Degree>>(createDegreeDTOs);
-            _jobSeekerService.AddJobSeekerForDegrees(jobSeekerId,value);
+            _jobSeekerService.AddJobSeekerForDegrees(jobSeekerId, value);
             return Ok(value);
         }
 

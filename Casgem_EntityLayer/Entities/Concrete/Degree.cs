@@ -11,8 +11,8 @@ namespace Casgem_EntityLayer.Entities.Concrete
     public class Degree : IEntity
     {
         public int DegreeId { get; set; } //ünvan id
-        public int CompanyId { get; set; } //şirket id'si. 1'e çok
-        public Company Company { get; set; }
+        //public int CompanyId { get; set; } //şirket id'si. 1'e çok
+        //public Company Company { get; set; }
         public int EmployerId { get; set; }
         public Employer Employer { get; set; }
     }

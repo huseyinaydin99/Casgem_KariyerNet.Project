@@ -28,6 +28,7 @@ namespace Casgem_APILayer.Concrete.Controllers
             var result = await _userManager.CreateAsync(appUser, createAppUserDTO.Password);
             if (result.Succeeded)
             {
+                HttpContext.Session.SetString("username", createAppUserDTO.Username);
                 return Ok(Messages.RegisterSuccessfully);
             }
             return BadRequest(Messages.RegisterFail);

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Reflection.Metadata;
@@ -16,6 +17,24 @@ namespace Casgem_DataAccessLayer.Concrete.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server = DESKTOP-13123BI; Initial Catalog = CasgemKariyerNetDb; Integrated Security = true;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<EducationInformation>()
+            .HasOne(a => a.JobSeeker)
+            .WithOne(a => a.EducationInformation)
+            .HasForeignKey<JobSeeker>(c => c.EducationInformationId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<WorkExperience>()
+            .HasOne(a => a.JobAdvertisement)
+            .WithOne(a => a.WorkExperience)
+            .HasForeignKey<JobAdvertisement>(c => c.WorkExperienceId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            
         }
 
         public DbSet<Company> Companies { get; set; } //Şirketler tablosu.

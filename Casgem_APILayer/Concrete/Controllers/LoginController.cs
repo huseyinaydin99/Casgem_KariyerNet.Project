@@ -20,13 +20,14 @@ namespace Casgem_APILayer.Concrete.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginAppUserDTO selectAppUserDTO)
+        public async Task<IActionResult> Login(LoginAppUserDTO loginAppUserDTO)
         {
-            string username = selectAppUserDTO.Username;
-            string password = selectAppUserDTO.Password;
+            string username = loginAppUserDTO.Username;
+            string password = loginAppUserDTO.Password;
             var result = await _signInManager.PasswordSignInAsync(username, password, false, false);
             if (result.Succeeded)
             {
+                HttpContext.Session.SetString("username", username);
                 return Ok(Messages.LoginSuccessfully);
             }
             return BadRequest(Messages.LoginFail);

@@ -52,6 +52,24 @@ namespace Casgem_DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EducationInformations",
+                columns: table => new
+                {
+                    EducationInformationId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Universite = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Faculty = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Section = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    JobSeekerId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducationInformations", x => x.EducationInformationId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -169,7 +187,10 @@ namespace Casgem_DataAccessLayer.Migrations
                     LinkedinUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProfilePhoto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     About = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AppUserId = table.Column<int>(type: "int", nullable: false)
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
+                    EmployerJobAdvertisementSearchHistoryId = table.Column<int>(type: "int", nullable: false),
+                    JobAdvertisementId = table.Column<int>(type: "int", nullable: false),
+                    DegreeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -229,32 +250,6 @@ namespace Casgem_DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "JobAdvertisements",
-                columns: table => new
-                {
-                    JobAdvertisementId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    JobDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GeneralQualifications = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Responsibilities = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QualificationsAndExperience = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Experience = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EducationLevel = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ForeignLanguage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ForeignLanguageLevel = table.Column<byte>(type: "tinyint", nullable: false),
-                    EmployerId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_JobAdvertisements", x => x.JobAdvertisementId);
-                    table.ForeignKey(
-                        name: "FK_JobAdvertisements_Employers_EmployerId",
-                        column: x => x.EmployerId,
-                        principalTable: "Employers",
-                        principalColumn: "EmployerId");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "WorkExperiences",
                 columns: table => new
                 {
@@ -274,12 +269,6 @@ namespace Casgem_DataAccessLayer.Migrations
                         column: x => x.CompanyId,
                         principalTable: "Companies",
                         principalColumn: "CompanyId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_WorkExperiences_JobAdvertisements_JobAdvertisementId",
-                        column: x => x.JobAdvertisementId,
-                        principalTable: "JobAdvertisements",
-                        principalColumn: "JobAdvertisementId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -309,11 +298,51 @@ namespace Casgem_DataAccessLayer.Migrations
                 {
                     table.PrimaryKey("PK_CurriculumVitaes", x => x.CurriculumVitaeId);
                     table.ForeignKey(
+                        name: "FK_CurriculumVitaes_EducationInformations_EducationInformationId",
+                        column: x => x.EducationInformationId,
+                        principalTable: "EducationInformations",
+                        principalColumn: "EducationInformationId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_CurriculumVitaes_WorkExperiences_WorkExperienceId",
                         column: x => x.WorkExperienceId,
                         principalTable: "WorkExperiences",
                         principalColumn: "WorkExperienceId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JobAdvertisements",
+                columns: table => new
+                {
+                    JobAdvertisementId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    JobDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GeneralQualifications = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Responsibilities = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    QualificationsAndExperience = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Experience = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EducationLevel = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ForeignLanguage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ForeignLanguageLevel = table.Column<byte>(type: "tinyint", nullable: false),
+                    WorkExperienceId = table.Column<int>(type: "int", nullable: false),
+                    JobApplicationId = table.Column<int>(type: "int", nullable: false),
+                    EmployerId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobAdvertisements", x => x.JobAdvertisementId);
+                    table.ForeignKey(
+                        name: "FK_JobAdvertisements_Employers_EmployerId",
+                        column: x => x.EmployerId,
+                        principalTable: "Employers",
+                        principalColumn: "EmployerId");
+                    table.ForeignKey(
+                        name: "FK_JobAdvertisements_WorkExperiences_WorkExperienceId",
+                        column: x => x.WorkExperienceId,
+                        principalTable: "WorkExperiences",
+                        principalColumn: "WorkExperienceId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -323,7 +352,11 @@ namespace Casgem_DataAccessLayer.Migrations
                     JobSeekerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CurriculumVitaeId = table.Column<int>(type: "int", nullable: false),
-                    AppUserId = table.Column<int>(type: "int", nullable: false)
+                    AppUserId = table.Column<int>(type: "int", nullable: false),
+                    JobApplicationId = table.Column<int>(type: "int", nullable: false),
+                    DegreeId = table.Column<int>(type: "int", nullable: false),
+                    EducationInformationId = table.Column<int>(type: "int", nullable: false),
+                    JobSeekerJobAdvertisementSearchHistoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -340,6 +373,12 @@ namespace Casgem_DataAccessLayer.Migrations
                         principalTable: "CurriculumVitaes",
                         principalColumn: "CurriculumVitaeId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_JobSeekers_EducationInformations_EducationInformationId",
+                        column: x => x.EducationInformationId,
+                        principalTable: "EducationInformations",
+                        principalColumn: "EducationInformationId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -372,30 +411,6 @@ namespace Casgem_DataAccessLayer.Migrations
                         column: x => x.JobSeekerId,
                         principalTable: "JobSeekers",
                         principalColumn: "JobSeekerId");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EducationInformations",
-                columns: table => new
-                {
-                    EducationInformationId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Universite = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Faculty = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Section = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    JobSeekerId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EducationInformations", x => x.EducationInformationId);
-                    table.ForeignKey(
-                        name: "FK_EducationInformations_JobSeekers_JobSeekerId",
-                        column: x => x.JobSeekerId,
-                        principalTable: "JobSeekers",
-                        principalColumn: "JobSeekerId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -436,7 +451,8 @@ namespace Casgem_DataAccessLayer.Migrations
                 columns: table => new
                 {
                     JobSeekerJobAdvertisementSearchHistoryId = table.Column<int>(type: "int", nullable: false),
-                    Word = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Word = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    JobSeekerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -519,12 +535,6 @@ namespace Casgem_DataAccessLayer.Migrations
                 column: "JobSeekerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EducationInformations_JobSeekerId",
-                table: "EducationInformations",
-                column: "JobSeekerId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_EmployerJobAdvertisementSearchHistories_EmployerId",
                 table: "EmployerJobAdvertisementSearchHistories",
                 column: "EmployerId");
@@ -539,6 +549,12 @@ namespace Casgem_DataAccessLayer.Migrations
                 name: "IX_JobAdvertisements_EmployerId",
                 table: "JobAdvertisements",
                 column: "EmployerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JobAdvertisements_WorkExperienceId",
+                table: "JobAdvertisements",
+                column: "WorkExperienceId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_JobApplications_EmployerId",
@@ -567,47 +583,19 @@ namespace Casgem_DataAccessLayer.Migrations
                 column: "CurriculumVitaeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_JobSeekers_EducationInformationId",
+                table: "JobSeekers",
+                column: "EducationInformationId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_WorkExperiences_CompanyId",
                 table: "WorkExperiences",
                 column: "CompanyId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorkExperiences_JobAdvertisementId",
-                table: "WorkExperiences",
-                column: "JobAdvertisementId",
-                unique: true);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_CurriculumVitaes_EducationInformations_EducationInformationId",
-                table: "CurriculumVitaes",
-                column: "EducationInformationId",
-                principalTable: "EducationInformations",
-                principalColumn: "EducationInformationId",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Employers_AspNetUsers_AppUserId",
-                table: "Employers");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_JobSeekers_AspNetUsers_AppUserId",
-                table: "JobSeekers");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Companies_Employers_EmployerId",
-                table: "Companies");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_JobAdvertisements_Employers_EmployerId",
-                table: "JobAdvertisements");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_CurriculumVitaes_EducationInformations_EducationInformationId",
-                table: "CurriculumVitaes");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -639,13 +627,7 @@ namespace Casgem_DataAccessLayer.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Employers");
-
-            migrationBuilder.DropTable(
-                name: "EducationInformations");
+                name: "JobAdvertisements");
 
             migrationBuilder.DropTable(
                 name: "JobSeekers");
@@ -654,13 +636,19 @@ namespace Casgem_DataAccessLayer.Migrations
                 name: "CurriculumVitaes");
 
             migrationBuilder.DropTable(
+                name: "EducationInformations");
+
+            migrationBuilder.DropTable(
                 name: "WorkExperiences");
 
             migrationBuilder.DropTable(
                 name: "Companies");
 
             migrationBuilder.DropTable(
-                name: "JobAdvertisements");
+                name: "Employers");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

@@ -302,9 +302,6 @@ namespace Casgem_DataAccessLayer.Migrations
 
                     b.HasKey("EducationInformationId");
 
-                    b.HasIndex("JobSeekerId")
-                        .IsUnique();
-
                     b.ToTable("EducationInformations");
                 });
 
@@ -330,9 +327,18 @@ namespace Casgem_DataAccessLayer.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
+                    b.Property<int>("DegreeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("District")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployerJobAdvertisementSearchHistoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JobAdvertisementId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LinkedinUrl")
                         .IsRequired()
@@ -402,6 +408,9 @@ namespace Casgem_DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("JobApplicationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("JobDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -414,9 +423,15 @@ namespace Casgem_DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("WorkExperienceId")
+                        .HasColumnType("int");
+
                     b.HasKey("JobAdvertisementId");
 
                     b.HasIndex("EmployerId");
+
+                    b.HasIndex("WorkExperienceId")
+                        .IsUnique();
 
                     b.ToTable("JobAdvertisements");
                 });
@@ -463,6 +478,18 @@ namespace Casgem_DataAccessLayer.Migrations
                     b.Property<int>("CurriculumVitaeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("DegreeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EducationInformationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JobApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JobSeekerJobAdvertisementSearchHistoryId")
+                        .HasColumnType("int");
+
                     b.HasKey("JobSeekerId");
 
                     b.HasIndex("AppUserId")
@@ -470,12 +497,18 @@ namespace Casgem_DataAccessLayer.Migrations
 
                     b.HasIndex("CurriculumVitaeId");
 
+                    b.HasIndex("EducationInformationId")
+                        .IsUnique();
+
                     b.ToTable("JobSeekers");
                 });
 
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobSeekerJobAdvertisementSearchHistory", b =>
                 {
                     b.Property<int>("JobSeekerJobAdvertisementSearchHistoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JobSeekerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Word")
@@ -514,9 +547,6 @@ namespace Casgem_DataAccessLayer.Migrations
                     b.HasKey("WorkExperienceId");
 
                     b.HasIndex("CompanyId");
-
-                    b.HasIndex("JobAdvertisementId")
-                        .IsUnique();
 
                     b.ToTable("WorkExperiences");
                 });
@@ -673,17 +703,6 @@ namespace Casgem_DataAccessLayer.Migrations
                     b.Navigation("Employer");
                 });
 
-            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.EducationInformation", b =>
-                {
-                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.JobSeeker", "JobSeeker")
-                        .WithOne("EducationInformation")
-                        .HasForeignKey("Casgem_EntityLayer.Entities.Concrete.EducationInformation", "JobSeekerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("JobSeeker");
-                });
-
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.Employer", b =>
                 {
                     b.HasOne("Casgem_EntityLayer.Entities.Concrete.AppUser", "AppUser")
@@ -711,6 +730,14 @@ namespace Casgem_DataAccessLayer.Migrations
                     b.HasOne("Casgem_EntityLayer.Entities.Concrete.Employer", null)
                         .WithMany("JobAdvertisements")
                         .HasForeignKey("EmployerId");
+
+                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.WorkExperience", "WorkExperience")
+                        .WithOne("JobAdvertisement")
+                        .HasForeignKey("Casgem_EntityLayer.Entities.Concrete.JobAdvertisement", "WorkExperienceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("WorkExperience");
                 });
 
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobApplication", b =>
@@ -754,9 +781,17 @@ namespace Casgem_DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.EducationInformation", "EducationInformation")
+                        .WithOne("JobSeeker")
+                        .HasForeignKey("Casgem_EntityLayer.Entities.Concrete.JobSeeker", "EducationInformationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("AppUser");
 
                     b.Navigation("CurriculumVitae");
+
+                    b.Navigation("EducationInformation");
                 });
 
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobSeekerJobAdvertisementSearchHistory", b =>
@@ -778,15 +813,7 @@ namespace Casgem_DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.JobAdvertisement", "JobAdvertisement")
-                        .WithOne("WorkExperience")
-                        .HasForeignKey("Casgem_EntityLayer.Entities.Concrete.WorkExperience", "JobAdvertisementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Company");
-
-                    b.Navigation("JobAdvertisement");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -854,6 +881,12 @@ namespace Casgem_DataAccessLayer.Migrations
                     b.Navigation("Degrees");
                 });
 
+            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.EducationInformation", b =>
+                {
+                    b.Navigation("JobSeeker")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.Employer", b =>
                 {
                     b.Navigation("Companies");
@@ -868,21 +901,21 @@ namespace Casgem_DataAccessLayer.Migrations
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobAdvertisement", b =>
                 {
                     b.Navigation("JobApplication");
-
-                    b.Navigation("WorkExperience")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobSeeker", b =>
                 {
                     b.Navigation("Degrees");
 
-                    b.Navigation("EducationInformation")
-                        .IsRequired();
-
                     b.Navigation("JobApplications");
 
                     b.Navigation("JobSeekerJobAdvertisementSearchHistories");
+                });
+
+            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.WorkExperience", b =>
+                {
+                    b.Navigation("JobAdvertisement")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

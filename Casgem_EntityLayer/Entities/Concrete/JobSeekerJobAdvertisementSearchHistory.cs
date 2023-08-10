@@ -14,7 +14,7 @@ namespace Casgem_EntityLayer.Entities.Concrete
         [ForeignKey("JobSeeker")]
         public int JobSeekerJobAdvertisementSearchHistoryId { get; set; }
         public string Word { get; set; }
-        //public int JobSeekerId { get; set; }
+        public int JobSeekerId { get; set; }
         public JobSeeker JobSeeker { get; set; }
     }
 }

@@ -19,9 +19,9 @@ namespace Casgem_EntityLayer.Entities.Concrete
         public string EducationLevel { get; set; }
         public string ForeignLanguage { get; set; }
         public byte ForeignLanguageLevel { get; set; }
-        //public int WorkExperienceId { get; set; }
+        public int WorkExperienceId { get; set; }
         public WorkExperience WorkExperience { get; set; }
-        //public int JobApplicationId { get; set; }
+        public int JobApplicationId { get; set; }
         public List<JobApplication> JobApplication { get; set; }
     }
 }

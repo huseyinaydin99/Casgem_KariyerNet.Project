@@ -19,7 +19,7 @@ namespace Casgem_EntityLayer.Entities.Concrete
         public List<JobApplication> JobApplications { get; set; }
         //public int DegreeId { get; set; } //bir çalışanın birden fazla ünvanı olabilir.
         public List<Degree> Degrees { get; set; }
-        //public int EducationInformationId { get; set; }
+        public int EducationInformationId { get; set; }
         public EducationInformation EducationInformation { get; set; }
         //public int JobSeekerJobAdvertisementSearchHistoryId { get; set; }
         public List<JobSeekerJobAdvertisementSearchHistory> JobSeekerJobAdvertisementSearchHistories { get; set; }
