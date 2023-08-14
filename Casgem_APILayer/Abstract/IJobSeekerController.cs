@@ -1,7 +1,7 @@
 ﻿using Casgem_DTOLayer.DTOs.Concrete.CreateJobSeekerDTOs;
-using Casgem_DTOLayer.DTOs.Concrete.DegreeDTOs;
 using Casgem_DTOLayer.DTOs.Concrete.DeleteJobSeekerDTOs;
 using Casgem_DTOLayer.DTOs.Concrete.EducationInformationDTOs;
+using Casgem_DTOLayer.DTOs.Concrete.EmployerDegreeDTOs;
 using Casgem_DTOLayer.DTOs.Concrete.JobApplicationDTOs;
 using Casgem_DTOLayer.DTOs.Concrete.SelectJobSeekerDTOs;
 using Casgem_DTOLayer.DTOs.Concrete.UpdateJobSeekerDTOs;
@@ -26,8 +26,8 @@ namespace Casgem_APILayer.Abstract
 
         public Task<IActionResult> AddJobSeekerForJobApplication(int jobSeekerId, CreateJobApplicationDTO jobApplication);
         public Task<IActionResult> AddJobSeekerForJobApplications(int jobSeekerId, List<CreateJobApplicationDTO> jobApplications);
-        public Task<IActionResult> AddJobSeekerForDegree(int jobSeekerId, CreateDegreeDTO createDegreeDTO);
-        public Task<IActionResult> AddJobSeekerForDegrees(int jobSeekerId, List<CreateDegreeDTO> createDegreeDTOs);
+        public Task<IActionResult> AddJobSeekerForDegree(int jobSeekerId, CreateEmployerDegreeDTO createDegreeDTO);
+        public Task<IActionResult> AddJobSeekerForDegrees(int jobSeekerId, List<CreateEmployerDegreeDTO> createDegreeDTOs);
         public Task<IActionResult> AddJobSeekerForEducationInformation(int jobSeekerId, CreateEducationInformationDTO educationInformation);
     }
 }

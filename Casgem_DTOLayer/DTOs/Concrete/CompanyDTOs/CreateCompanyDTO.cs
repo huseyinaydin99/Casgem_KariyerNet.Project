@@ -13,7 +13,6 @@ namespace Casgem_DTOLayer.DTOs.Concrete.CompanyDTOs
         public int NumberOfEmployees { get; set; }
         public string Website { get; set; }
         public string LinkedinUrl { get; set; }
-        public int DegreeId { get; set; }
-        public List<Degree> Degrees { get; set; }
+        public int EmployerId { get; set; }
     }
 }

@@ -22,9 +22,8 @@ namespace Casgem_DataAccessLayer.Abstract
         public List<Employer> GetEmployerWithJobAdvertisements();
         public Employer GetEmployerWithJobAdvertisement(int id);
 
-        public void AddEmployerForDegree(int employerId, Degree degree);
-        public void AddEmployerForDegrees(int employerId, List<Degree> degrees);
-        public void AddEmployerForJobAdvertisementSearchHistory(int employerId, EmployerJobAdvertisementSearchHistory history);
+        public void AddEmployerForDegree(int employerId, EmployerDegree degree);
+        public void AddEmployerForDegrees(int employerId, List<EmployerDegree> degrees);
         public void AddEmployerForJobAdvertisement(int employerId, JobAdvertisement jobAdvertisement);
     }
 }

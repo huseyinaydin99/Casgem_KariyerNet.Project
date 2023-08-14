@@ -16,7 +16,7 @@ namespace Casgem_DataAccessLayer.Abstract
 
         public void AddJobAdvertisementForJobApplications(int jobAdvertisementId, List<JobApplication> jobApplication);
         public void AddJobAdvertisementForJobApplication(int jobAdvertisementId, JobApplication jobApplication);
-        public void AddJobAdvertisementForWorkExperince(int jobAdvertisementId, WorkExperience workExperince);
+        public void AddJobAdvertisementForWorkExperince(int jobAdvertisementId, JobAdvertisementWorkExperience workExperince);
 
     }
 }

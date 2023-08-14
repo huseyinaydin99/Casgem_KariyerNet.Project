@@ -13,7 +13,7 @@ namespace Casgem_DataAccessLayer.Abstract
         public CurriculumVitae GetCurriculumVitaeWithWorkExperience(int id);
         public CurriculumVitae GetCurriculumVitaeWithEducationInformation(int id);
         public void AddCurriculumVitaeForEducationInformation(int curriculumVitaeId, EducationInformation educationInformation);
-        public void AddCurriculumVitaeForWorkExperience(int curriculumVitaeId, WorkExperience workExperience);
+        public void AddCurriculumVitaeForWorkExperience(int curriculumVitaeId, JobAdvertisementWorkExperience workExperience);
 
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Casgem_DataAccessLayer.Concrete.EntityFramework
 {
-    public class EfWorkExperienceDal : GenericRepository<WorkExperience>, IWorkExperienceDal
+    public class EfWorkExperienceDal : GenericRepository<JobAdvertisementWorkExperience>, IWorkExperienceDal
     {
 
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Casgem_EntityLayer.Entities.Concrete
 {
-    //İş ilanı Entity'si
+    //CV
     public class CurriculumVitae : IEntity
     {
         public int CurriculumVitaeId { get; set; }
@@ -24,10 +24,8 @@ namespace Casgem_EntityLayer.Entities.Concrete
         public bool? DisabilityStatus { get; set; }
         public string? SummaryInformation { get; set; }
         public string? Abilities { get; set; }
-        //public int WorkExperienceId { get; set; }
-        public WorkExperience? WorkExperience { get; set; }
-        //public int EducationInformationId { get; set; }
+        public JobSeekerWorkExperience? WorkExperience { get; set; }
         public EducationInformation? EducationInformation { get; set; }
-        public List<Degree>? Degrees { get; set; }
+        public List<JobSeekerDegree>? Degrees { get; set; }
     }
 }

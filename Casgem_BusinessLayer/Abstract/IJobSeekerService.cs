@@ -18,8 +18,8 @@ namespace Casgem_BusinessLayer.Abstract
 
         public void AddJobSeekerForJobApplication(int jobSeekerId, JobApplication jobApplication);
         public void AddJobSeekerForJobApplication(int jobSeekerId, List<JobApplication> jobApplications);
-        public void AddJobSeekerForDegree(int jobSeekerId, Degree degree);
-        public void AddJobSeekerForDegrees(int jobSeekerId, List<Degree> degrees);
+        public void AddJobSeekerForDegree(int jobSeekerId, EmployerDegree degree);
+        public void AddJobSeekerForDegrees(int jobSeekerId, List<EmployerDegree> degrees);
         public void AddJobSeekerForEducationInformation(int jobSeekerId, EducationInformation educationInformation);
     }
 }

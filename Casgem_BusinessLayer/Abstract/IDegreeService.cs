@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Casgem_BusinessLayer.Abstract
 {
-    public interface IDegreeService : IGenericService<Degree>
+    public interface IDegreeService : IGenericService<EmployerDegree>
     {
 
     }

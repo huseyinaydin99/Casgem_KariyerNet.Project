@@ -20,14 +20,14 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
             _context = context;
         }
 
-        public void AddJobSeekerForDegree(int jobSeekerId, Degree degree)
+        public void AddJobSeekerForDegree(int jobSeekerId, EmployerDegree degree)
         {
             var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
             //value.Degrees.Add(degree);
             _context.SaveChanges();
         }
 
-        public void AddJobSeekerForDegree(int jobSeekerId, List<Degree> degrees)
+        public void AddJobSeekerForDegree(int jobSeekerId, List<EmployerDegree> degrees)
         {
             var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
             //degrees.ForEach(degree => value.Degrees.Add(degree));
@@ -44,14 +44,14 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
         public void AddJobSeekerForJobApplication(int jobSeekerId, JobApplication jobApplication)
         {
             var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
-            value.JobApplications.Add(jobApplication);
+            //value.JobApplications.Add(jobApplication);
             _context.SaveChanges();
         }
 
         public void AddJobSeekerForJobApplication(int jobSeekerId, List<JobApplication> jobApplications)
         {
             var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
-            jobApplications.ForEach(jobApplication => value.JobApplications.Add(jobApplication));
+            //jobApplications.ForEach(jobApplication => value.JobApplications.Add(jobApplication));
             _context.SaveChanges();
         }
 
@@ -72,13 +72,15 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
 
         public List<JobSeeker> GetJobSeekerWithJobApplication()
         {
-            return _context.JobSeekers.Include(jobSeeker => jobSeeker.JobApplications).ToList();
+            //return _context.JobSeekers.Include(jobSeeker => jobSeeker.JobApplications).ToList();
+            return null;
         }
 
         //aslında WHERE Condition'u olan INNER JOIN
         public JobSeeker GetJobSeekerWithJobApplication(int id)
         {
-            return _context.JobSeekers.Include(jobSeeker => jobSeeker.JobApplications).Where(jobSeeker => jobSeeker.JobSeekerId == id).FirstOrDefault();
+            //return _context.JobSeekers.Include(jobSeeker => jobSeeker.JobApplications).Where(jobSeeker => jobSeeker.JobSeekerId == id).FirstOrDefault();
+            return null;
         }
 
         /*public List<JobSeeker> GetJobSeekerWithJobSeekerJobAdvertisementSearchHistories()

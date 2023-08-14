@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Casgem_BusinessLayer.Abstract
 {
-    public interface IWorkExperienceService : IGenericService<WorkExperience>
+    public interface IWorkExperienceService : IGenericService<JobAdvertisementWorkExperience>
     {
 
     }

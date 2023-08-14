@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Casgem_DataAccessLayer.Abstract
 {
-    public interface IDegreeDal : IGenericDal<Degree>
+    public interface IDegreeDal : IGenericDal<EmployerDegree>
     {
         
     }

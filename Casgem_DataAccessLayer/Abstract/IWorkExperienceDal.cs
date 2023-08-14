@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Casgem_DataAccessLayer.Abstract
 {
-    public interface IWorkExperienceDal : IGenericDal<WorkExperience>
+    public interface IWorkExperienceDal : IGenericDal<JobAdvertisementWorkExperience>
     {
         
     }

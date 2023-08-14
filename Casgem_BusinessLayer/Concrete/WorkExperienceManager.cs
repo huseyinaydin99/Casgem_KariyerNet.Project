@@ -13,27 +13,27 @@ namespace Casgem_BusinessLayer.Concrete
             _workExperienceDal = workExperienceDal;
         }
 
-        public void TDelete(WorkExperience t)
+        public void TDelete(JobAdvertisementWorkExperience t)
         {
             _workExperienceDal.Delete(t);
         }
 
-        public WorkExperience TGetByID(int id)
+        public JobAdvertisementWorkExperience TGetByID(int id)
         {
             return _workExperienceDal.GetByID(id);
         }
 
-        public List<WorkExperience> TGetList()
+        public List<JobAdvertisementWorkExperience> TGetList()
         {
             return _workExperienceDal.GetList();
         }
 
-        public void TInsert(WorkExperience t)
+        public void TInsert(JobAdvertisementWorkExperience t)
         {
             _workExperienceDal.Insert(t);
         }
 
-        public void TUpdate(WorkExperience t)
+        public void TUpdate(JobAdvertisementWorkExperience t)
         {
             _workExperienceDal.Update(t);
         }

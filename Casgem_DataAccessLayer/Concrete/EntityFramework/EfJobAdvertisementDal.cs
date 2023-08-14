@@ -22,37 +22,39 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
 
         public void AddJobAdvertisementForJobApplication(int jobAdvertisementId, JobApplication jobApplication)
         {
-            var value = _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == jobAdvertisementId).FirstOrDefault();
+            /*var value = _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == jobAdvertisementId).FirstOrDefault();
             value.JobApplication.Add(jobApplication);
-            _context.SaveChanges();
+            _context.SaveChanges();*/
         }
 
         public void AddJobAdvertisementForJobApplications(int jobAdvertisementId, List<JobApplication> jobApplication)
         {
-            var value = _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == jobAdvertisementId).FirstOrDefault();
-            jobApplication.ForEach(jobApp => value.JobApplication.Add(jobApp));
+            /**var value = _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == jobAdvertisementId).FirstOrDefault();
+            jobApplication.ForEach(jobApp => value.JobApplication.Add(jobApp));*/
         }
 
-        public void AddJobAdvertisementForWorkExperince(int jobAdvertisementId, WorkExperience workExperince)
+        public void AddJobAdvertisementForWorkExperince(int jobAdvertisementId, JobAdvertisementWorkExperience workExperince)
         {
-            var value = _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == jobAdvertisementId).FirstOrDefault();
+            /*var value = _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == jobAdvertisementId).FirstOrDefault();
             value.WorkExperience = workExperince;
-            _context.SaveChanges();
+            _context.SaveChanges();*/
         }
 
         public JobAdvertisement GetJobAdvertisementWithJobApplication(int id)
         {
-            return _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == id).FirstOrDefault();
+            return null;
+            //return _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == id).FirstOrDefault();
         }
 
         public List<JobAdvertisement> GetJobAdvertisementWithJobApplications()
         {
-            return _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).ToList();
+            return null;
+            //return _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobApplication).ToList();
         }
 
         public JobAdvertisement GetJobAdvertisementWithWorkExperince(int id)
         {
-            return _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.WorkExperience).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == id).FirstOrDefault();
+            return _context.JobAdvertisements.Include(jobAdvertisement => jobAdvertisement.JobAdvertisementWorkExperience).Where(jobAdvertisement => jobAdvertisement.JobAdvertisementId == id).FirstOrDefault();
         }
     }
 }

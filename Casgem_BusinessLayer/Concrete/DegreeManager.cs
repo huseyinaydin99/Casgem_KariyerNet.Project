@@ -13,27 +13,27 @@ namespace Casgem_BusinessLayer.Concrete
             _degreeDal = degreeDal;
         }
 
-        public void TDelete(Degree t)
+        public void TDelete(EmployerDegree t)
         {
             _degreeDal.Delete(t);
         }
 
-        public Degree TGetByID(int id)
+        public EmployerDegree TGetByID(int id)
         {
             return _degreeDal.GetByID(id);
         }
 
-        public List<Degree> TGetList()
+        public List<EmployerDegree> TGetList()
         {
             return _degreeDal.GetList();
         }
 
-        public void TInsert(Degree t)
+        public void TInsert(EmployerDegree t)
         {
             _degreeDal.Insert(t);
         }
 
-        public void TUpdate(Degree t)
+        public void TUpdate(EmployerDegree t)
         {
             _degreeDal.Update(t);
         }

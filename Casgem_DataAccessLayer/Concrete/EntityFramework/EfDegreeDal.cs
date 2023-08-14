@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Casgem_DataAccessLayer.Concrete.EntityFramework
 {
-    public class EfDegreeDal : GenericRepository<Degree>, IDegreeDal
+    public class EfDegreeDal : GenericRepository<EmployerDegree>, IDegreeDal
     {
 
     }

@@ -13,12 +13,12 @@ namespace Casgem_BusinessLayer.Concrete
             _jobSeekerDal = jobSeekerDal;
         }
 
-        public void AddJobSeekerForDegree(int jobSeekerId, Degree degree)
+        public void AddJobSeekerForDegree(int jobSeekerId, EmployerDegree degree)
         {
             _jobSeekerDal.AddJobSeekerForDegree(jobSeekerId, degree);
         }
 
-        public void AddJobSeekerForDegrees(int jobSeekerId, List<Degree> degrees)
+        public void AddJobSeekerForDegrees(int jobSeekerId, List<EmployerDegree> degrees)
         {
             _jobSeekerDal.AddJobSeekerForDegree(jobSeekerId, degrees);
         }

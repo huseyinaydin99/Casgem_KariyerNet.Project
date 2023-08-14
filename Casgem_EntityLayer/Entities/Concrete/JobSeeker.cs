@@ -11,7 +11,7 @@ namespace Casgem_EntityLayer.Entities.Concrete
     {
         public int JobSeekerId { get; set; }
         public CurriculumVitae? CurriculumVitae { get; set; }
+
         public int? AppUserId { get; set; }
-        public List<JobApplication>? JobApplications { get; set; }
     }
 }

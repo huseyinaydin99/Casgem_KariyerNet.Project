@@ -50,23 +50,17 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
             return _context.Employers.Include(employer => employer.Companies).ToList();
         }
 
-        public void AddEmployerForDegree(int employerId, Degree degree)
+        public void AddEmployerForDegree(int employerId, EmployerDegree degree)
         {
             var value = _context.Employers.Where(e => e.EmployerId == employerId).FirstOrDefault();
             value.Degrees.Add(degree);
             _context.SaveChanges();
         }
 
-        public void AddEmployerForDegrees(int employerId, List<Degree> degrees)
+        public void AddEmployerForDegrees(int employerId, List<EmployerDegree> degrees)
         {
             var value = _context.Employers.Where(e => e.EmployerId == employerId).FirstOrDefault();
             degrees.ForEach(d => value.Degrees.Add(d));
-            _context.SaveChanges();
-        }
-
-        public void AddEmployerForJobAdvertisementSearchHistory(int employerId, EmployerJobAdvertisementSearchHistory history)
-        {
-            var value = _context.Employers.Where(e => e.EmployerId == employerId).FirstOrDefault();
             _context.SaveChanges();
         }
 

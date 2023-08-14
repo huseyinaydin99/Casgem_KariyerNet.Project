@@ -27,10 +27,10 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
             _context.SaveChanges();
         }
 
-        public void AddCurriculumVitaeForWorkExperience(int curriculumVitaeId, WorkExperience workExperience)
+        public void AddCurriculumVitaeForWorkExperience(int curriculumVitaeId, JobAdvertisementWorkExperience workExperience)
         {
             var value = _context.CurriculumVitaes.Include(curriculumVitae => curriculumVitae.EducationInformation).Where(curriculumVitae => curriculumVitae.CurriculumVitaeId == curriculumVitaeId).FirstOrDefault();
-            value.WorkExperience = workExperience;
+            //value.WorkExperience = workExperience;
             _context.SaveChanges();
         }
 

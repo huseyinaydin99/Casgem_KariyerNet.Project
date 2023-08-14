@@ -136,7 +136,7 @@ namespace Casgem_DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EmployerId")
+                    b.Property<int>("EmployerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FoundationYear")
@@ -218,44 +218,16 @@ namespace Casgem_DataAccessLayer.Migrations
                     b.Property<string>("SummaryInformation")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("WorkExperienceId")
+                    b.Property<int?>("WorkExperienceJobSeekerWorkExperienceId")
                         .HasColumnType("int");
 
                     b.HasKey("CurriculumVitaeId");
 
                     b.HasIndex("EducationInformationId");
 
-                    b.HasIndex("WorkExperienceId");
+                    b.HasIndex("WorkExperienceJobSeekerWorkExperienceId");
 
                     b.ToTable("CurriculumVitaes");
-                });
-
-            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.Degree", b =>
-                {
-                    b.Property<int>("DegreeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DegreeId"), 1L, 1);
-
-                    b.Property<int?>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CurriculumVitaeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EmployerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DegreeId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("CurriculumVitaeId");
-
-                    b.HasIndex("EmployerId");
-
-                    b.ToTable("Degrees");
                 });
 
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.EducationInformation", b =>
@@ -266,25 +238,22 @@ namespace Casgem_DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EducationInformationId"), 1L, 1);
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Faculty")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JobSeekerId")
+                    b.Property<int?>("JobSeekerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Section")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Universite")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EducationInformationId");
@@ -329,6 +298,24 @@ namespace Casgem_DataAccessLayer.Migrations
                         .IsUnique();
 
                     b.ToTable("Employers");
+                });
+
+            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.EmployerDegree", b =>
+                {
+                    b.Property<int>("EmployerDegreeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployerDegreeId"), 1L, 1);
+
+                    b.Property<int?>("EmployerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployerDegreeId");
+
+                    b.HasIndex("EmployerId");
+
+                    b.ToTable("Degrees");
                 });
 
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobAdvertisement", b =>
@@ -380,28 +367,50 @@ namespace Casgem_DataAccessLayer.Migrations
                     b.ToTable("JobAdvertisements");
                 });
 
-            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobApplication", b =>
+            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobAdvertisementWorkExperience", b =>
                 {
-                    b.Property<int>("JobApplicationId")
+                    b.Property<int>("JobAdvertisementWorkExperienceId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobApplicationId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobAdvertisementWorkExperienceId"), 1L, 1);
 
-                    b.Property<int>("EmployerId")
-                        .HasColumnType("int");
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("JobAdvertisementId")
                         .HasColumnType("int");
 
-                    b.Property<int>("JobSeekerId")
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("JobAdvertisementWorkExperienceId");
+
+                    b.HasIndex("JobAdvertisementId")
+                        .IsUnique();
+
+                    b.ToTable("WorkExperiences");
+                });
+
+            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobApplication", b =>
+                {
+                    b.Property<int?>("JobApplicationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("JobApplicationId"), 1L, 1);
+
+                    b.Property<int?>("JobAdvertisementId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("JobSeekerId")
                         .HasColumnType("int");
 
                     b.HasKey("JobApplicationId");
-
-                    b.HasIndex("JobAdvertisementId");
-
-                    b.HasIndex("JobSeekerId");
 
                     b.ToTable("JobApplications");
                 });
@@ -431,36 +440,51 @@ namespace Casgem_DataAccessLayer.Migrations
                     b.ToTable("JobSeekers");
                 });
 
-            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.WorkExperience", b =>
+            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobSeekerDegree", b =>
                 {
-                    b.Property<int>("WorkExperienceId")
+                    b.Property<int>("JobSeekerDegreeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WorkExperienceId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobSeekerDegreeId"), 1L, 1);
+
+                    b.Property<int?>("CurriculumVitaeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("JobSeekerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("JobSeekerDegreeId");
+
+                    b.HasIndex("CurriculumVitaeId");
+
+                    b.ToTable("JobSeekerDegree");
+                });
+
+            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobSeekerWorkExperience", b =>
+                {
+                    b.Property<int>("JobSeekerWorkExperienceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobSeekerWorkExperienceId"), 1L, 1);
 
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("JobAdvertisementId")
+                    b.Property<int>("JobSeekerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("WorkExperienceId");
+                    b.HasKey("JobSeekerWorkExperienceId");
 
-                    b.HasIndex("JobAdvertisementId")
-                        .IsUnique();
-
-                    b.ToTable("WorkExperiences");
+                    b.ToTable("JobSeekerWorkExperience");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -570,7 +594,9 @@ namespace Casgem_DataAccessLayer.Migrations
                 {
                     b.HasOne("Casgem_EntityLayer.Entities.Concrete.Employer", null)
                         .WithMany("Companies")
-                        .HasForeignKey("EmployerId");
+                        .HasForeignKey("EmployerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.CurriculumVitae", b =>
@@ -579,30 +605,13 @@ namespace Casgem_DataAccessLayer.Migrations
                         .WithMany()
                         .HasForeignKey("EducationInformationId");
 
-                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.WorkExperience", "WorkExperience")
+                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.JobSeekerWorkExperience", "WorkExperience")
                         .WithMany()
-                        .HasForeignKey("WorkExperienceId");
+                        .HasForeignKey("WorkExperienceJobSeekerWorkExperienceId");
 
                     b.Navigation("EducationInformation");
 
                     b.Navigation("WorkExperience");
-                });
-
-            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.Degree", b =>
-                {
-                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.Company", null)
-                        .WithMany("Degrees")
-                        .HasForeignKey("CompanyId");
-
-                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.CurriculumVitae", null)
-                        .WithMany("Degrees")
-                        .HasForeignKey("CurriculumVitaeId");
-
-                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.Employer", null)
-                        .WithMany("Degrees")
-                        .HasForeignKey("EmployerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.Employer", b =>
@@ -614,6 +623,13 @@ namespace Casgem_DataAccessLayer.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.EmployerDegree", b =>
+                {
+                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.Employer", null)
+                        .WithMany("Degrees")
+                        .HasForeignKey("EmployerId");
+                });
+
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobAdvertisement", b =>
                 {
                     b.HasOne("Casgem_EntityLayer.Entities.Concrete.Employer", null)
@@ -621,17 +637,11 @@ namespace Casgem_DataAccessLayer.Migrations
                         .HasForeignKey("EmployerId");
                 });
 
-            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobApplication", b =>
+            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobAdvertisementWorkExperience", b =>
                 {
                     b.HasOne("Casgem_EntityLayer.Entities.Concrete.JobAdvertisement", null)
-                        .WithMany("JobApplication")
-                        .HasForeignKey("JobAdvertisementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.JobSeeker", null)
-                        .WithMany("JobApplications")
-                        .HasForeignKey("JobSeekerId")
+                        .WithOne("JobAdvertisementWorkExperience")
+                        .HasForeignKey("Casgem_EntityLayer.Entities.Concrete.JobAdvertisementWorkExperience", "JobAdvertisementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -649,13 +659,11 @@ namespace Casgem_DataAccessLayer.Migrations
                     b.Navigation("CurriculumVitae");
                 });
 
-            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.WorkExperience", b =>
+            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobSeekerDegree", b =>
                 {
-                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.JobAdvertisement", null)
-                        .WithOne("WorkExperience")
-                        .HasForeignKey("Casgem_EntityLayer.Entities.Concrete.WorkExperience", "JobAdvertisementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Casgem_EntityLayer.Entities.Concrete.CurriculumVitae", null)
+                        .WithMany("Degrees")
+                        .HasForeignKey("CurriculumVitaeId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -718,11 +726,6 @@ namespace Casgem_DataAccessLayer.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.Company", b =>
-                {
-                    b.Navigation("Degrees");
-                });
-
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.CurriculumVitae", b =>
                 {
                     b.Navigation("Degrees");
@@ -739,15 +742,8 @@ namespace Casgem_DataAccessLayer.Migrations
 
             modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobAdvertisement", b =>
                 {
-                    b.Navigation("JobApplication");
-
-                    b.Navigation("WorkExperience")
+                    b.Navigation("JobAdvertisementWorkExperience")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Casgem_EntityLayer.Entities.Concrete.JobSeeker", b =>
-                {
-                    b.Navigation("JobApplications");
                 });
 #pragma warning restore 612, 618
         }

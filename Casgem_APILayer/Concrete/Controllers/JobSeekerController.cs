@@ -2,9 +2,9 @@
 using Casgem_APILayer.Abstract;
 using Casgem_BusinessLayer.Abstract;
 using Casgem_DTOLayer.DTOs.Concrete.CreateJobSeekerDTOs;
-using Casgem_DTOLayer.DTOs.Concrete.DegreeDTOs;
 using Casgem_DTOLayer.DTOs.Concrete.DeleteJobSeekerDTOs;
 using Casgem_DTOLayer.DTOs.Concrete.EducationInformationDTOs;
+using Casgem_DTOLayer.DTOs.Concrete.EmployerDegreeDTOs;
 using Casgem_DTOLayer.DTOs.Concrete.JobApplicationDTOs;
 using Casgem_DTOLayer.DTOs.Concrete.SelectJobSeekerDTOs;
 using Casgem_DTOLayer.DTOs.Concrete.UpdateJobSeekerDTOs;
@@ -40,17 +40,17 @@ namespace Casgem_APILayer.Concrete.Controllers
         }
 
         [HttpPost("/AddJobSeekerForDegree")]
-        public async Task<IActionResult> AddJobSeekerForDegree(int jobSeekerId, CreateDegreeDTO createDegreeDTO)
+        public async Task<IActionResult> AddJobSeekerForDegree(int jobSeekerId, CreateEmployerDegreeDTO createDegreeDTO)
         {
-            var value = _mapper.Map<Degree>(createDegreeDTO);
+            var value = _mapper.Map<EmployerDegree>(createDegreeDTO);
             _jobSeekerService.AddJobSeekerForDegree(jobSeekerId, value);
             return Ok(value);
         }
 
         [HttpPost("/AddJobSeekerForDegrees")]
-        public async Task<IActionResult> AddJobSeekerForDegrees(int jobSeekerId, List<CreateDegreeDTO> createDegreeDTOs)
+        public async Task<IActionResult> AddJobSeekerForDegrees(int jobSeekerId, List<CreateEmployerDegreeDTO> createDegreeDTOs)
         {
-            var value = _mapper.Map<List<Degree>>(createDegreeDTOs);
+            var value = _mapper.Map<List<EmployerDegree>>(createDegreeDTOs);
             _jobSeekerService.AddJobSeekerForDegrees(jobSeekerId, value);
             return Ok(value);
         }

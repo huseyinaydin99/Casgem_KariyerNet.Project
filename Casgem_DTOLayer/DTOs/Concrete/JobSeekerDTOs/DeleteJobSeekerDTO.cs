@@ -5,7 +5,7 @@ namespace Casgem_DTOLayer.DTOs.Concrete.DeleteJobSeekerDTOs
 {
     public class DeleteJobSeekerDTO : IDTO
     {
-        public int JobSeekerId { get; set; } //İş arayan Id
+        public int? JobSeekerId { get; set; }
        
     }
 }
