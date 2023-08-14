@@ -40,17 +40,6 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
             return _context.Employers.Include(employer => employer.JobAdvertisements).Where(employer => employer.EmployerId == id).FirstOrDefault();
         }
 
-
-        public List<Employer> GetEmployerWithJobAdvertisementSearchHistories()
-        {
-            return _context.Employers.Include(employer => employer.EmployerJobAdvertisementSearchHistory).ToList();
-        }
-
-        public Employer GetEmployerWithJobAdvertisementSearchHistory(int id)
-        {
-            return _context.Employers.Include(employer => employer.EmployerJobAdvertisementSearchHistory).Where(employer => employer.EmployerId == id).FirstOrDefault();
-        }
-
         public Employer GetEmployerWithCompany(int id)
         {
             return _context.Employers.Include(employer => employer.Companies).Where(employer => employer.EmployerId == id).FirstOrDefault();
@@ -78,7 +67,6 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
         public void AddEmployerForJobAdvertisementSearchHistory(int employerId, EmployerJobAdvertisementSearchHistory history)
         {
             var value = _context.Employers.Where(e => e.EmployerId == employerId).FirstOrDefault();
-            value.EmployerJobAdvertisementSearchHistory.Add(history);
             _context.SaveChanges();
         }
 
@@ -87,6 +75,16 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
             var value = _context.Employers.Where(e => e.EmployerId == employerId).FirstOrDefault();
             value.JobAdvertisements.Add(jobAdvertisement);
             _context.SaveChanges();
+        }
+
+        public List<Employer> GetEmployerWithJobAdvertisementSearchHistories()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Employer GetEmployerWithJobAdvertisementSearchHistory(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

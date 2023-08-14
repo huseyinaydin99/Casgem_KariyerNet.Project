@@ -14,6 +14,6 @@ namespace Casgem_EntityLayer.Entities.Concrete
         //public int CompanyId { get; set; } //şirket id'si. 1'e çok
         //public Company Company { get; set; }
         public int EmployerId { get; set; }
-        public Employer Employer { get; set; }
+        //public Employer Employer { get; set; }
     }
 }

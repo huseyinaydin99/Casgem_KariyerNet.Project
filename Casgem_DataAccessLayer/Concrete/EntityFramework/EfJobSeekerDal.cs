@@ -23,21 +23,21 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
         public void AddJobSeekerForDegree(int jobSeekerId, Degree degree)
         {
             var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
-            value.Degrees.Add(degree);
+            //value.Degrees.Add(degree);
             _context.SaveChanges();
         }
 
         public void AddJobSeekerForDegree(int jobSeekerId, List<Degree> degrees)
         {
             var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
-            degrees.ForEach(degree => value.Degrees.Add(degree));
+            //degrees.ForEach(degree => value.Degrees.Add(degree));
             _context.SaveChanges();
         }
 
         public void AddJobSeekerForEducationInformation(int jobSeekerId, EducationInformation educationInformation)
         {
             var value = _context.JobSeekers.Where(jobSeeker => jobSeeker.JobSeekerId == jobSeekerId).FirstOrDefault();
-            value.EducationInformation = educationInformation;
+            //value.EducationInformation = educationInformation;
             _context.SaveChanges();
         }
 
@@ -57,17 +57,17 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
 
         public List<JobSeeker> GetJobSeekerWithDegree()
         {
-            return _context.JobSeekers.Include(jobSeeker => jobSeeker.Degrees).ToList();
+            throw new NotImplementedException();
         }
 
         public JobSeeker GetJobSeekerWithDegree(int id)
         {
-            return _context.JobSeekers.Include(jobSeeker => jobSeeker.Degrees).Where(jobSeeker => jobSeeker.JobSeekerId == id).FirstOrDefault();
+            throw new NotImplementedException();
         }
 
         public JobSeeker GetJobSeekerWithEducationInformation(int id)
         {
-            return _context.JobSeekers.Include(jobSeeker => jobSeeker.EducationInformation).Where(jobSeeker => jobSeeker.JobSeekerId == id).FirstOrDefault();
+            throw new NotImplementedException();
         }
 
         public List<JobSeeker> GetJobSeekerWithJobApplication()
@@ -81,7 +81,7 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
             return _context.JobSeekers.Include(jobSeeker => jobSeeker.JobApplications).Where(jobSeeker => jobSeeker.JobSeekerId == id).FirstOrDefault();
         }
 
-        public List<JobSeeker> GetJobSeekerWithJobSeekerJobAdvertisementSearchHistories()
+        /*public List<JobSeeker> GetJobSeekerWithJobSeekerJobAdvertisementSearchHistories()
         {
             return _context.JobSeekers.Include(jobSeeker => jobSeeker.JobSeekerJobAdvertisementSearchHistories).ToList();
         }
@@ -89,6 +89,6 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
         public JobSeeker GetJobSeekerWithJobSeekerJobAdvertisementSearchHistories(int id)
         {
             return _context.JobSeekers.Include(jobSeeker => jobSeeker.JobSeekerJobAdvertisementSearchHistories).Where(jobSeeker => jobSeeker.JobSeekerId == id).FirstOrDefault();
-        }
+        }*/
     }
 }

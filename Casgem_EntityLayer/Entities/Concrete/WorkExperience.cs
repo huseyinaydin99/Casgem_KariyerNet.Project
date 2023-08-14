@@ -11,11 +11,11 @@ namespace Casgem_EntityLayer.Entities.Concrete
     {
         public int WorkExperienceId { get; set; }
         public int CompanyId { get; set; }
-        public Company Company { get; set; }
+        //public Company Company { get; set; }
         public string City { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int JobAdvertisementId { get; set; }
-        public JobAdvertisement JobAdvertisement { get; set; }
+        //public JobAdvertisement JobAdvertisement { get; set; }
     }
 }

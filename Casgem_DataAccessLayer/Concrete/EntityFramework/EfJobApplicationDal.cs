@@ -22,17 +22,17 @@ namespace Casgem_DataAccessLayer.Concrete.EntityFramework
 
         public JobApplication GetJobApplicationWithEmployer(int id)
         {
-            return _context.JobApplications.Include(jobApplication => jobApplication.Employer).Where(jobApplication => jobApplication.JobApplicationId == id).FirstOrDefault();
+            throw new NotImplementedException();
         }
 
         public JobApplication GetJobApplicationWithJobAdvertisement(int id)
         {
-            return _context.JobApplications.Include(jobApplication => jobApplication.JobAdvertisement).Where(jobApplication => jobApplication.JobApplicationId == id).FirstOrDefault();
+            throw new NotImplementedException();
         }
 
         public JobApplication GetJobApplicationWithJobSeeker(int id)
         {
-            return _context.JobApplications.Include(jobApplication => jobApplication.JobSeeker).Where(jobApplication => jobApplication.JobApplicationId == id).FirstOrDefault();
+            throw new NotImplementedException();
         }
     }
 }

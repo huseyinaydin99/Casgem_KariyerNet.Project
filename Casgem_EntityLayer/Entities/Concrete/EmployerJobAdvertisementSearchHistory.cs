@@ -10,9 +10,9 @@ namespace Casgem_EntityLayer.Entities.Concrete
     //İş ilanı arama kısmı geçmişi Entity'si.
     public class EmployerJobAdvertisementSearchHistory : IEntity
     {
-        public int EmployerJobAdvertisementSearchHistoryId { get; set; }
+        /*public int EmployerJobAdvertisementSearchHistoryId { get; set; }
         public string Word { get; set; }
         public int EmployerId { get; set; }
-        public Employer Employer { get; set; }
+        public Employer Employer { get; set; }*/
     }
 }

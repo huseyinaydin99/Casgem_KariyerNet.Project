@@ -11,10 +11,10 @@ namespace Casgem_EntityLayer.Entities.Concrete
     //İş ilanı arama kısmı geçmişi Entity'si.
     public class JobSeekerJobAdvertisementSearchHistory : IEntity
     {
-        [ForeignKey("JobSeeker")]
+        /*[ForeignKey("JobSeeker")]
         public int JobSeekerJobAdvertisementSearchHistoryId { get; set; }
         public string Word { get; set; }
         public int JobSeekerId { get; set; }
-        public JobSeeker JobSeeker { get; set; }
+        public JobSeeker JobSeeker { get; set; }*/
     }
 }
